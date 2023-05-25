@@ -1,0 +1,104 @@
+.RegisterDiv{
+ width: 50%;
+ margin: auto;
+ /* background-color: aqua; */
+ min-height: 25vh;
+}
+.LabelRegister{
+width: 100px;
+/* background-color: aquamarine; */
+text-align: left;
+}
+.SerachTherapistDiv{
+    width: 90%;
+    /* background-color: maroon; */
+    min-height: 8vh;
+    margin: auto;
+}
+.RegisterInput{
+    width: 300px;
+    padding: 4px 30px;
+    border-radius: 5px;
+    background-color: rgb(233, 240, 233);
+}
+.RegisterInput:focus{
+    outline: none;
+    border: 0;
+}
+.FormDiv{
+    width: 30% !important;
+}
+@media screen and (max--width: 768px){
+  
+    .FormDiv{
+        width: 50% !important;
+    }
+    
+}
+@media screen and (max-width: 768px){
+  
+    .RegisterDiv{
+        width: 80%;
+        margin: auto;
+        /* background-color: aqua; */
+       }
+
+}
+@media screen and (max-width: 568px){
+  
+       .RegisterInput{
+        width: 200px;
+        padding: 4px 20px;
+        border-radius: 5px;
+    }
+       
+    .LabelRegister{
+        width: 90px;
+        /* background-color: aquamarine; */
+        text-align: left;
+        }
+}
+@media screen and (max-width:  320px){
+  
+    .RegisterInput{
+     width: 180px;
+     padding: 4px 20px;
+ }
+ .LabelRegister{
+    width: 80px;
+    /* background-color: aquamarine; */
+    text-align: left;
+    }
+    
+}
+.AllDivSelect{
+    height: 100vh;
+    overflow-y: scroll;
+    position: relative;
+}
+.FinishDiv{
+position: sticky;
+bottom: 0;
+/* background-color: white; */
+color: blueviolet;
+}
+.ButtonFinish{
+    height: 40px;
+    background-color: rgb(61, 187, 61);
+    width: max-content;
+    padding-right: 30px;
+    padding-left: 30px;
+    box-shadow: 0px 10px 10px -10px rgb(26, 50, 13);
+    /* border-radius: 5px; */
+    margin-bottom: 5px;
+}
+.CancelDiv{
+    position: sticky;
+    top: 0;
+}
+.selected{
+    border: 5px solid rgb(35, 129, 35);
+}
+.LabelPayment{
+    width: 50%;
+}

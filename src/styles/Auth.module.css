@@ -1,0 +1,161 @@
+/* .formContainer{
+    width: 100vw;
+    height: 100vh;
+}
+.formDiv{
+    height: auto;
+    width: 50% !important;
+    margin: auto;
+}
+.inputDiv{
+    width: 100% !important;
+    margin-top: 2rem;
+
+}
+.input{
+    width: 60% !important;
+    background-color: rgb(242, 248, 243) !important;
+    
+}
+.formLabel{
+    width: 30%;
+    text-align: right;
+    font-size: large;
+    
+}
+.submitButton{
+    padding: 4px 18px;
+    background-color: green;
+    box-shadow: 1px 1px 3px black;
+    border-radius: 5px;
+    font-size: medium;
+    margin-top: 2rem;
+}
+
+@media only screen and (max-width:920px){
+.formLabel{
+    font-size: large;
+}
+.formDiv{
+    height: auto;
+    width: 60% !important;
+    margin: auto;
+}
+}
+@media only screen and (max-width:767px){
+.formLabel{
+    font-size: medium;
+}
+.formDiv{
+    height: auto;
+    width: 75% !important;
+    margin: auto;
+}
+.submitButton{
+    padding: 3px 12px;
+    border-radius: 5px;
+    font-size: medium;
+}
+}
+@media only screen and (max-width:468px){
+.formLabel{
+    font-size: small;
+}
+.formDiv{
+    height: auto;
+    width: 90% !important;
+    margin: auto;
+}
+.submitButton{
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: medium;
+}
+} */
+
+/* ///// */
+.formcontainer{
+    width: 100vw;
+    height: 100vh;
+}
+.formdiv{
+    height: auto;
+    width: 50% !important;
+    margin: auto;
+}
+.inputdiv{
+    width: 100% !important;
+    /* background-color: blue; */
+    margin-top: 2rem;
+
+}
+.input{
+    width: 60% !important;
+    background-color: rgb(242, 248, 243) !important;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+}
+.formlabel{
+    width: 30%;
+    /* background-color: aqua; */
+    text-align: right;
+    font-size: large;
+    
+}
+.submitbutton{
+    padding: 4px 18px;
+    background-color: green;
+    box-shadow: 1px 1px 3px black;
+    border-radius: 5px;
+    font-size: medium;
+    margin-top: 2rem;
+}
+
+
+@media only screen and (max-width:920px){
+.formlabel{
+    font-size: large;
+}
+.formdiv{
+    height: auto;
+    width: 70% !important;
+    margin: auto;
+}
+}
+@media only screen and (max-width:767px){
+.formlabel{
+    font-size: medium;
+}
+.formdiv{
+    height: auto;
+    width: 90% !important;
+    margin: auto;
+}
+.submitbutton{
+    padding: 3px 12px;
+    border-radius: 5px;
+    font-size: medium;
+}
+.input{
+    width: 90% !important;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    
+}
+}
+@media only screen and (max-width:468px){
+.formlabel{
+    font-size: small;
+}
+.formdiv{
+    height: auto;
+    width: 90% !important;
+    margin: auto;
+}
+.submitbutton{
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: medium;
+}
+}

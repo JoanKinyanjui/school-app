@@ -1,0 +1,99 @@
+.WholeMobileButton{
+font-family: System;
+height: 100vh;
+overflow-y:scroll ;
+position: relative;
+}
+.OkayDivMobile{
+    margin-top: 40px;
+}
+.ImageProfileDiv{
+    width: 138.28px;
+height: 138px;
+/* border: 3px solid gainsboro; */
+}
+.ActualDoctorImgMobile{
+    border-radius: 100%;
+    border: 3px solid green;
+    /* border-radius: 10px; */
+    box-shadow: 0px 12px 12px -12px rgb(22, 179, 4);
+}
+.OverallNavMobileTop{
+    box-shadow: 0px 10px 10px -10px rgb(26, 50, 13);
+    height: 60px;
+}
+.NavMobileAppointment{
+    width: 60%;
+    height: 60px;
+    /* background-color: gray; */
+    /* position: fixed; */
+}
+.SpecTimeDivMobile{
+    width: 120px !important;
+    height: 46px !important;    
+font-family: 'Averia Sans Libre';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+background:gainsboro;
+border-radius: 10px;
+line-height: 100%;
+}
+.WorkingHoursMobileDiv{
+    display: flex !important;
+    overflow-x: scroll !important;
+    /* background: red; */
+    width: 100vw ;
+}
+.BookMobileAppointmentButton{
+width: 376.55px;
+height: 60px;
+position: absolute;
+bottom: 2%;
+background: #2a8024;
+border-radius: 10px;
+
+}
+.ConfirmSummarybutton{
+    position: absolute;
+    bottom: 2%;
+    width: 185.23px;
+    height: 50px;
+    background-color: rgb(20, 114, 20);
+    border-radius: 5px;
+    color: white;
+}
+.SummaryModalMobile{
+    background-color: white;
+    width: 80vw;
+    margin: auto;
+    height: 60vh;
+    border-radius: 5px;
+    box-shadow: 0px 10px 10px -10px rgb(26, 50, 13);
+}
+.Haiyaaa{
+    width: 75vw;
+}
+.CancelDiv{
+    .CancelDiv{
+        position: sticky;
+        top: 0;
+    }
+}
+
+
+/* Desktop */
+.WholeDesktopButton{
+    font-family: System;
+height: 100vh;
+overflow-y:scroll ;
+position: relative;
+}
+.SummaryModalDesktop{
+    background-color: white;
+    width: 80vw;
+    margin: auto;
+    height: 60vh;
+    border-radius: 10px;
+    box-shadow: 0px 10px 10px -10px rgb(26, 50, 13);
+}

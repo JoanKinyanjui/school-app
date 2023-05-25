@@ -1,0 +1,91 @@
+.SchoolsDiv{
+    width: 100vw;
+    min-height: 100vh;
+    /* background-color: chartreuse; */
+}
+.SchoolProfile{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    /* box-shadow: 0px 0px 10px gainsboro; */
+}
+.Monogram{
+    background-color: rgb(192, 235, 192);
+}
+.SchooLDiv{
+    width: 100vw;
+    box-shadow: 0px 10px 10px -10px gainsboro;
+    height: 10vh;
+}
+.LogoPic{
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+}
+.SearchBarDiv{
+    width: 100vw !important;
+    box-shadow: 0px 10px 10px -10px rgb(6, 6, 6);
+    height: 10vh;
+    display: flex;
+}
+.FormDiv{
+    width: 30% !important;
+}
+.SearchBarInputField{
+width: 80%;
+}
+.SearchBarInputField:focus{
+outline: none;
+border-bottom: 1px solid gray;
+}
+
+@media screen and (min-width: 768px){
+    .SchooLDiv{
+        width: 70vw;
+        /* background-color: chartreuse; */
+        margin: auto;
+    }
+    
+    
+}
+@media screen and (max--width: 768px){
+  
+    .FormDiv{
+        width: 50% !important;
+    }
+    
+}
+
+@media screen and (min-width: 920px){
+    .SchooLDiv{
+        width: 50vw;
+        /* background-color: chartreuse; */
+        margin: auto;
+    }
+    
+}
+.Period{
+    color:#2f8d12 !important;
+    font-weight: 900 !important;
+    font-size: 50.07px !important;
+    line-height: 28.54px !important;
+}
+.fitBitName{
+    font-family: Manrope sans-serif !important;
+    color: black !important;
+    font-weight: 700 !important;
+    font-size: xx-large !important;
+    /* background-color: aqua; */
+    width: 50% !important;
+   
+}
+
+.SignUpButtonNav{
+/* background-color: rgb(38, 168, 38); */
+box-shadow: 0px 3px 3px 3px rgb(0, 0, 6);
+border-radius: 5px;
+/* color: white; */
+color: rgb(45, 154, 45);
+font-weight: 500;
+text-transform: uppercase;
+}

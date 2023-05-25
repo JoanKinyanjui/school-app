@@ -1,0 +1,83 @@
+.MobileDiv{
+    width: 100vw;
+   height: 100vh;
+position: relative;
+background-color:  white;
+}
+.DesktopDiv{
+    width: 100vw;
+height: 100vh;
+position: relative;
+background-color:  white;
+background-image: url('https://images.pexels.com/photos/5384516/pexels-photo-5384516.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load');
+background-position: right;
+background-repeat: no-repeat;
+background-size: cover;
+}
+.DesktopPlus{
+    width:100px;
+    height:100px;
+    position: absolute;
+    bottom: 20%;
+    background-color: rgb(52, 223, 43);
+}
+.MobilePlus{
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    bottom: 4%;
+    background-color: rgb(52, 223, 43);
+}
+.PendingCompletedMobile{
+    position: absolute;
+    /* background-color: aqua; */
+    bottom: 17%;
+}
+.PendingCompletedDesktop{
+    position: absolute;
+    /* background-color: aqua; */
+    bottom: 40%;
+}
+.StatusBoxesBig{
+    width: 30%;
+    background-color: white;
+    height: 20vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.StatusBoxes{
+    width: 45%;
+    background-color: white;
+    height: 20vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.DashboardMobileImageDiv{
+    height: 53vh;
+    position: relative;
+}
+.DashboardMobileImageDivGradient{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top,rgb(32, 62, 24),transparent,transparent);
+}
+.Numbers{
+    font-family: System;
+    font-weight:  500;
+    color: rgb(78, 209, 78);
+    font-size: xx-large;
+}
+.NumbersSmall{
+    font-family: System;
+    font-weight:  500;
+    color: rgb(78, 209, 78);
+    font-size: x-large;
+}
+@media only  screen and (max-width: 320px) {
+    .MobilePlus{
+        width: 50px;
+        height: 50px;
+    }
+}
+.animate__animated.animate__bounceIn {
+    --animate-duration: 500000s;
+  }
