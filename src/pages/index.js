@@ -8,7 +8,7 @@ function Schools() {
   const[error,setError] = useState();
 
   const getSchools = async() => {
-    const response = await fetch("http://localhost:5000/school",{
+    const response = await fetch("https://school-app-backendurl.vercel.app/school",{
     method: 'GET',
     headers:{
       'Content-Type':'application/json'

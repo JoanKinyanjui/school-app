@@ -49,7 +49,7 @@ function generateSymbol() {
     e.preventDefault('');
 
    //Register School...
-const response = await fetch('http://localhost:5000/school/signup',{
+const response = await fetch('https://school-app-backendurl.vercel.app/school/signup',{
     method:'POST',
     headers:{
       'Content-Type':'application/json'

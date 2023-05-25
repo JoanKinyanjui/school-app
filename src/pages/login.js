@@ -22,7 +22,7 @@ const onHandleSubmit =async(e)=>{
   e.preventDefault();
 
   // Login Logic ...
-  const response = await fetch('http://localhost:5000/school/login',{
+  const response = await fetch('https://school-app-backendurl.vercel.app/school/login',{
       method:'POST',
       headers:{
         'Content-Type':'application/json'

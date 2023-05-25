@@ -63,7 +63,7 @@ function Progress() {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
  const getStatusOfStudent = async(id) =>{
-    const response = await fetch(`http://localhost:5000/TherapySession/getStatus/${id}`,{
+    const response = await fetch(`https://school-app-backendurl.vercel.app/TherapySession/getStatus/${id}`,{
         method: 'GET',
         headers:{
           'Content-Type':'application/json',

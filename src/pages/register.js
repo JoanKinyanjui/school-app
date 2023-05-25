@@ -62,7 +62,7 @@ const [inputMessage,setInputMessage] = useState('');
         return;
     }
 
-    const response = await fetch("http://localhost:5000/TherapySession",{
+    const response = await fetch("https://school-app-backendurl.vercel.app/TherapySession",{
     method:'POST',
     headers:{
       'Content-Type':'application/json',

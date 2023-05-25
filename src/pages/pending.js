@@ -9,7 +9,7 @@ function Pending() {
   const [status,setStatus] = useState();
   const getPendingSessions = async () =>{
 
-  const response = await fetch("http://localhost:5000/TherapySession",{
+  const response = await fetch("https://school-app-backendurl.vercel.app/TherapySession",{
     method: 'GET',
     headers:{
       'Content-Type':'application/json',
