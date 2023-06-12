@@ -30,7 +30,8 @@ router.post("/login", async (req, res) => {
         SECRETWORD
       );
 
-      res.status(200).json({ success: true, token: token, Message:"Successfully Logged In" })
+      res.status(200).json({ success: true, token: token, school:school, Message:"Successfully Logged In" })
+
     } else {
       return  res.status(401).json({
         success: false,
@@ -106,13 +107,20 @@ router.put("/UpdateDetails", async (req, res) => {
   }
 });
 
-router.get("/:symbol", async (req, res) => {
+router.get("/:id", async (req, res) => {
+  console.log(req.params.id)
   try {
-    const schools = await SchoolModel.find({ symbol: req.params.symbol });
-    res.json(schools);
+    const schoolId = req.params.id;
+
+    const school = await SchoolModel.findById(schoolId);
+
+    if (!school) {
+      return res.status(404).json({ error: 'School not found' });
+    }
+
+    res.status(200).json(school);
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, error: error });
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
@@ -126,6 +134,9 @@ router.get("/", async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 });
+
+
+
 
 
 

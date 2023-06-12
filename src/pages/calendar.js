@@ -37,10 +37,10 @@ function Calendar() {
 <div className={`${styles.WholeMobileButton} md:hidden grid`}>
         {/* Mobile */}
  <div className='w-screen'>
-    <div className={`${styles.OverallNavMobileTop}`}>
-    <div className={`${styles.NavMobileAppointment} flex justify-between items-center py-8`}>
+    <div className={`${styles.OverallNavMobileTop} py-4`}>
+    <div className={`${styles.NavMobileAppointment}  flex justify-between items-center py-8`}>
       <Link  href='/progress'>
-      <div className='font-medium text-green-600 px-2'><ArrowBackIosIcon /></div>
+      <div className='font-medium text-green-600 '><ArrowBackIosIcon /></div>
       </Link>
         <div className='text-lg font-medium text-green-600'>Appointment</div>
     </div>
@@ -50,7 +50,7 @@ function Calendar() {
         <div className={`${styles.ImageProfileDiv}`}><img className={`${styles.ActualDoctorImgMobile} w-full h-full`}  src='https://images.pexels.com/photos/3714743/pexels-photo-3714743.jpeg?auto=compress&cs=tinysrgb&w=1600' /></div>
         <div className='grid text-left w-1/2'>
        <div className='pl-2'>
-       <p className='font-normal text-lg'>Dr Upul</p>
+       <p className='font-normal text-lg'>Dr Upul Phyatak</p>
          <p className='text-neutral-600'>Therapist</p>
        </div>
        <div className='w-full justify-between flex items-center pl-2'>

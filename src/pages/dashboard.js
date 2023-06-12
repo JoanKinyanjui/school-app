@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Register from './register';
 import Link from 'next/link';
 
@@ -31,6 +31,41 @@ function Dashboard() {
    const handleCloseMobile = () => setOpenMobile(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [school, setSchool] = useState(null);
+  const [error, setError] = useState(null);
+
+
+// Authorize school Data
+let token;
+let schoolId;
+
+
+useEffect(() => {
+  if (typeof window !== 'undefined') {
+    token = window.localStorage.getItem('token');
+    schoolId = JSON.parse( window.localStorage.getItem('school'))._id ;
+  }
+  console.log("==>",schoolId);
+  if (schoolId) {
+    fetchSchoolData(schoolId);
+  }
+}, [schoolId]);
+
+const fetchSchoolData = async (schoolId) => {
+  try {
+    const response = await fetch(`http://localhost:5000/school/${schoolId}`);
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data)
+      setSchool(data);
+    } else {
+      setError('School not found');
+    }
+  } catch (error) {
+    setError('Error fetching school data');
+  }
+};
+
 
   return (
     <div className="w-screen h-screen">
@@ -46,7 +81,7 @@ function Dashboard() {
     <div className={`${styles.StatusBoxesBig} flex place-content-center items-center`}>
     <Link href='/pending'>
     <div className='grid place-content-center'> 
-     <p className={`${styles.Numbers} mx-auto py-2 text-6xl`}>02</p>
+     <p className={`${styles.Numbers} mx-auto py-2 text-6xl`}>{school && school.pending}</p>
       <p className='mx-auto text-stone-500 text-xl'>Pending</p>
     </div>
     </Link>
@@ -55,7 +90,7 @@ function Dashboard() {
   <div className={`${styles.StatusBoxesBig}  flex place-content-center items-center`}>
   <Link href='/completed'>
     <div className='grid place-content-center'> 
-     <p className={`${styles.Numbers} mx-auto py-2 text-3xl`}>400</p>
+     <p className={`${styles.Numbers} mx-auto py-2 text-3xl`}>{school && school.completed}</p>
       <p className='mx-auto text-stone-500 text-xl'>Completed</p>
     </div>
     </Link>
@@ -88,7 +123,7 @@ function Dashboard() {
   </div> */}
 <div className={`${styles.DashboardMobileImageDivGradient}`}>
   </div>
-<img className={`${styles.DashboardMobileImageDv} w-full h-full`} src='https://images.pexels.com/photos/5384516/pexels-photo-5384516.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'/>
+<img className={`${styles.DashboardMobileImageDv} w-full h-full`} src='https://cdn.pixabay.com/photo/2022/11/11/01/24/family-7584005_640.jpg'/>
 
 </div>
 

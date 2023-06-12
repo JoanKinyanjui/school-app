@@ -105,7 +105,7 @@ const [inputMessage,setInputMessage] = useState('');
     </form>
     <div className={`${styles.SerachTherapistDiv}`}>
 
-    <div className='flex'>
+    <div className='flex w-10/12 mx-auto md:w-3/4'>
     <FormControl fullWidth>
   <InputLabel id="demo-simple-select-label">Gender</InputLabel>
   <Select
@@ -144,7 +144,7 @@ const [inputMessage,setInputMessage] = useState('');
  <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={3} style={{justifyContent: 'center', alignItems: 'center'}}>
         {therapists.map((therapist)=>(
-          <Grid item xs={6} md={4} lg={3} key={therapist.id} >
+          <Grid item xs={5} sm={4} md={4} lg={3} key={therapist.id} >
           <Item  className={` ${isSelected === therapist.id ? styles.selected : ''}`} onClick={()=>handleClick(therapist.id)}><SingleTherapist therapist={therapist} /></Item>
         </Grid>
         ))}

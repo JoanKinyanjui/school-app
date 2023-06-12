@@ -22,7 +22,8 @@ const onHandleSubmit =async(e)=>{
   e.preventDefault();
 
   // Login Logic ...
-  const response = await fetch('https://school-app-backendurl.vercel.app/school/login',{
+  // const response = await fetch('https://school-app-backendurl.vercel.app/school/login',{
+    const response = await fetch('http://localhost:5000/school/login',{
       method:'POST',
       headers:{
         'Content-Type':'application/json'
@@ -34,11 +35,12 @@ const onHandleSubmit =async(e)=>{
      });
 
   if(response.status == 200){
-      const {success,token,Message} = await response.json();
+      const {success,token,Message,school} = await response.json();
      if(success){
       setMessage(Message);
       localStorage.setItem('token',token);
-      console.log(token,success);
+      localStorage.setItem('school',JSON.stringify(school));
+      console.log(token,success,school);
       setPassword('');
       setEmail('');
       router.push('/dashboard');
@@ -58,13 +60,13 @@ const onHandleSubmit =async(e)=>{
 <p className='text-3xl mt-4'>Log In</p>
     </div>
 <form onSubmit={onHandleSubmit} className='form'>
-    <div className={`${styles.inputdiv} flex place-content-between items-center`}>
+    <div className={`${styles.inputdiv} flex  items-center`}>
     <label className={`${styles.formlabel}`}>Email :</label>
-    <input className={`${styles.input}`} type='email' required name="email"  value={email}  onChange={onChangeEmail} />
+    <input className={`${styles.input} ml-4`} type='email' required name="email"  value={email}  onChange={onChangeEmail} />
     </div>
-    <div className={`${styles.inputdiv} flex place-content-between items-center`}>
+    <div className={`${styles.inputdiv} flex  items-center`}>
     <label className={`${styles.formlabel}`} >Password :</label>
-    <input className={`${styles.input}`} type="password" name='password' required  value={password} onChange={onChangePassword} />
+    <input className={`${styles.input} ml-4`} type="password" name='password' required  value={password} onChange={onChangePassword} />
     </div>
     <div className='flex place-content-center mt-2 text-slate-400'><p>No account yet  ? <Link href='/signup' className='text-blue-300 '>Sign up</Link></p></div>
    <div className='w-full flex place-content-center pt-8'>

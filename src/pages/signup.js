@@ -49,7 +49,8 @@ function generateSymbol() {
     e.preventDefault('');
 
    //Register School...
-const response = await fetch('https://school-app-backendurl.vercel.app/school/signup',{
+// const response = await fetch('https://school-app-backendurl.vercel.app/school/signup',{
+  const response = await fetch('http://localhost:5000/school/signup',{
     method:'POST',
     headers:{
       'Content-Type':'application/json'
@@ -93,31 +94,31 @@ if(response.status == 200){
     <div className={`${styles.formcontainer} flex items-center relative`} >
     <div className={`${styles.formdiv}`}>
     <div className='grid w-full place-content-center '>
-    <div><AccountCircleIcon style={{fontSize: "xxx-large", color:"green"}}/></div>
+    <div><AccountCircleIcon style={{fontSize: "xxx-large", color:"green"}} /></div>
 <p className='text-3xl mt-4'>Sign Up</p>
     </div>
 <form onSubmit={onHandleSubmit} className='form'>
-<div className={`${styles.inputdiv} flex place-content-between items-center`}>
+<div className={`${styles.inputdiv} flex items-center`}>
     <label className={`${styles.formlabel}`} >School Name :</label>
-    <input className={`${styles.input}`} type='text'  required name="name" value={name} onChange={onChangename} />
+    <input className={`${styles.input} ml-4`} type='text'  required name="name" value={name} onChange={onChangename} />
     </div>
-    <div className={`${styles.inputdiv} flex place-content-between items-center`}>
+    <div className={`${styles.inputdiv} flex  items-center`}>
     <label className={`${styles.formlabel}`} >Monogram :</label>
-    <input className={`${styles.input}`} type='text'  required name="symbol" id="symbol" value={symbol} readOnly />
+    <input className={`${styles.input} ml-4`} type='text'  required name="symbol" id="symbol" value={symbol} readOnly />
     </div>
-    <div className={`${styles.inputdiv} flex place-content-between items-center`}>
+    <div className={`${styles.inputdiv} flex  items-center`}>
     <label  className={`${styles.formlabel}`} >Email :</label>
-    <input className={`${styles.input}`} type='email' required name="email"  value={email}  onChange={onChangeEmail} />
+    <input className={`${styles.input} ml-4`} type='email' required name="email"  value={email}  onChange={onChangeEmail} />
     </div>
-    <div className={`${styles.inputdiv} flex place-content-between items-center`}>
+    <div className={`${styles.inputdiv} flex  items-center`}>
     <label className={`${styles.formlabel}`}> Password :</label>
-    <input className={`${styles.input}`} type="password" name='password' required  value={password} onChange={onChangePassword} />
+    <input className={`${styles.input} ml-4`} type="password" name='password' required  value={password} onChange={onChangePassword} />
     </div>
-    <div className={`${styles.inputdiv} flex place-content-between items-center`}>
+    <div className={`${styles.inputdiv} flex  items-center`}>
     <label className={`${styles.formlabel}`}>Confirm Password :</label>
-    <input className={`${styles.input}`} type="password" name='confirmPassword' required  value={confirmPassword} onChange={onChangeConfirmPassword} />
+    <input className={`${styles.input} ml-4`} type="password" name='confirmPassword' required  value={confirmPassword} onChange={onChangeConfirmPassword} />
     </div>
-    <div className='flex place-content-center mt-2 text-slate-400'><p>Already have an account  ? <Link href='/login' className='text-blue-300 '>SignUp</Link></p></div>
+    <div className='flex place-content-center mt-2 text-slate-400'><p>Already have an account  ? <Link href='/login' className='text-blue-300 '>Log in</Link></p></div>
 
     <div className='w-full flex place-content-center pt-8'>
    <input type='submit' value='SIGN UP' className={`${styles.submitbutton} mx-auto`} />

@@ -102,7 +102,7 @@ function Sessions() {
         </div>
          </div>
 
-         <div className={`${styles.SingleSessionMobileDiv} grid`}>
+         <div className={`${styles.SingleSessionMobileDiv} grid`}> 
         <div className=" flex items-center justify-between px-4 my-4">
         <div>
         <p className="font-medium"> Dr Buthia</p>

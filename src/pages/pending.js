@@ -9,7 +9,8 @@ function Pending() {
   const [status,setStatus] = useState();
   const getPendingSessions = async () =>{
 
-  const response = await fetch("https://school-app-backendurl.vercel.app/TherapySession",{
+  // const response = await fetch("https://school-app-backendurl.vercel.app/TherapySession",{
+      const response = await fetch("http://localhost:5000/TherapySession",{
     method: 'GET',
     headers:{
       'Content-Type':'application/json',
@@ -49,14 +50,16 @@ function Pending() {
   return (
   
     <>
-       <div className={`${styles.SearchBarDiv} flex items-center justify-between w-full `}>
-       <Link href='/dashboard' className='flex w-full'>
+       <div className={`${styles.SearchBarDiv}  w-full `}>
+<div className='flex justify-between w-10/12 md:w-3/4 mx-auto items-center h-full' >
+<Link href='/dashboard' className='flex w-full'>
   <p className={`${styles.fitBitName} flex pl-4 md:pl-12`}>Better You <span className={`${styles.Period}`}>.</span></p>
   </Link>
     <form className={`${styles.FormDiv} flex items-end py-4 bg-transparent`} >
         <label> <BiSearchAlt2 className='text-2xl text-green-600 mx-4' /></label>
         <input  type='text'  placeholder='St. Austin...' className={`${styles.SearchBarInputField} bg-transparent`} />
     </form>
+</div>
     </div>
 <div className={`${styles.SchoolsDiv}`}>
       {pendingSessions.map((single)=>(
