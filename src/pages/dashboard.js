@@ -38,14 +38,16 @@ function Dashboard() {
 // Authorize school Data
 let token;
 let schoolId;
+let symbol;
 
 
 useEffect(() => {
   if (typeof window !== 'undefined') {
     token = window.localStorage.getItem('token');
     schoolId = JSON.parse( window.localStorage.getItem('school'))._id ;
+    symbol = JSON.parse( window.localStorage.getItem('school')).symbol ;
   }
-  console.log("==>",schoolId);
+  console.log("==>",schoolId,symbol);
   if (schoolId) {
     fetchSchoolData(schoolId);
   }
@@ -110,7 +112,7 @@ const fetchSchoolData = async (schoolId) => {
       >
   
         <div  className='w-3/4 mx-auto bg-white'>
-        <Register  onClose={handleClose} />
+        <Register  onClose={handleClose} symbol={symbol && symbol}/>
         </div>
       </Modal>
     

@@ -10,7 +10,7 @@ function Pending() {
   const getPendingSessions = async () =>{
 
   // const response = await fetch("https://school-app-backendurl.vercel.app/TherapySession",{
-      const response = await fetch("http://localhost:5000/TherapySession",{
+  const response = await fetch("http://localhost:5000/TherapySession",{
     method: 'GET',
     headers:{
       'Content-Type':'application/json',
@@ -22,13 +22,13 @@ function Pending() {
     const sessions = await response.json();
     const updatedSessions = sessions.reverse().map(session => {
       let number = 1;
-      if(session.Status === "initial status") {
+      if(session.Status === "registration complete") {
         number = 1;
       } else if(session.Status === " payment complete") {
         number = 2;
-      } else if(session.Status === "calendar booking ") {
+      } else if(session.Status === "booking complete ") {
         number = 3;
-      } else if(session.Status === "sessions in progress") {
+      } else if(session.Status === "sessions complete") {
         number = 4;
       }
       return {

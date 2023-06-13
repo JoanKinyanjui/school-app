@@ -102,3 +102,27 @@ color: blueviolet;
 .LabelPayment{
     width: 50%;
 }
+
+
+.BackgroundFormSTK{
+    width: 60%;
+    height: max-content;
+    margin :auto;
+    padding: 100px 0px;
+    background-image: linear-gradient(to bottom, rgba(96, 101, 95, 0.5), rgba(17, 50, 27, 0.5)), url('https://cdn.pixabay.com/photo/2018/09/23/18/30/drop-3698073_1280.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* color: white !important; */
+
+}
+@media screen and (max-width:  920px){
+    .BackgroundFormSTK{
+        width: 80%;
+    }
+}
+@media screen and (max-width:  520px){
+    .BackgroundFormSTK{
+        width:90%;
+    }
+}

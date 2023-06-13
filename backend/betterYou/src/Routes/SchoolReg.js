@@ -108,7 +108,7 @@ router.put("/UpdateDetails", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  console.log(req.params.id)
+  // console.log(req.params.id)
   try {
     const schoolId = req.params.id;
 

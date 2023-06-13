@@ -15,15 +15,6 @@ import EventIcon from '@mui/icons-material/Event';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 
 
-
-
-
-// const steps = [
-//    "Registration",
-//    "Payment",
-//    "Appointment Booking",
-//    "Sessions In Progress"
-//   ]; 
 const steps = [
   {
     key: 1,
@@ -45,7 +36,7 @@ const steps = [
   },
   {
     key: 4,
-    label: 'Sessions In Progress',
+    label: 'Sessions Complete',
     path: '/sessions',
     icon: AssignmentTurnedInIcon,
   },
@@ -74,13 +65,13 @@ function Progress() {
         const status = await response.json();
         setCurrentStatus(status);
     
-        if (status === 'initial status') {
+        if (status === 'registration complete') {
           setStage(1);
         } else if (status === 'payment complete') {
           setStage(2);
-        } else if (status === 'calendar booking') {
+        } else if (status === 'booking complete') {
           setStage(3);
-        } else if (status === 'sessions in progress') {
+        } else if (status === 'sessions complete') {
           setStage(4);
         }
         console.log(status);
@@ -89,10 +80,10 @@ function Progress() {
 
     
  }
-
+let id;
  useEffect(()=>{
     console.log(router.query)
-    const id = router.query?.id;
+     id = router.query?.id;
     console.log(id)
     if(id){
         getStatusOfStudent(id);
@@ -110,7 +101,7 @@ function Progress() {
       <Stepper activeStep={stage} alternativeLabel>
         {steps.map((step) => (
           <Step key={step.key}>
-            <Link href={`${step.path}`}>
+           <Link href={{ pathname: `${step.path}`, query: router.query }}>
               <StepLabel
                 // StepIconComponent={step.icon}
                 StepIconProps={{ style: { color: '#50C878' } }}
@@ -128,7 +119,7 @@ function Progress() {
       <Stepper activeStep={stage} orientation="vertical" className='mx-auto'>
         {steps.map((step, index) => (
           <Step key={step.id}>
-            <Link href={`${step.path}`} >
+            <Link href={{ pathname: `${step.path}`, query: router.query }}>
             <StepLabel StepIconProps={{ style: { color: '#50C878' } }}>
               {step.label}
             </StepLabel>

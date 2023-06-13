@@ -62,17 +62,24 @@ const [inputMessage,setInputMessage] = useState('');
         return;
     }
 
-    const response = await fetch("https://school-app-backendurl.vercel.app/TherapySession",{
+    if (typeof window !== 'undefined') {
+      // token = window.localStorage.getItem('token');
+      // schoolId = JSON.parse( window.localStorage.getItem('school'))._id ;
+      symbol = JSON.parse( window.localStorage.getItem('school')).symbol ;
+      console.log(symbol);
+    }
+    // const response = await fetch("https://school-app-backendurl.vercel.app/TherapySession",{
+    const response = await fetch("http://localhost:5000/TherapySession",{
     method:'POST',
     headers:{
       'Content-Type':'application/json',
       Authorization :`Bearer ${localStorage.getItem('token')}`
     },
-    body: JSON.stringify({ AdmNo, Name, therapistId: isSelected })
+    body: JSON.stringify({ AdmNo, Name,symbol,therapistId: isSelected })
     })
     if(response.status == 201){
-      const {Message} = response.json();
-      console.log(Message);
+      const {Message,session} = response.json();
+      console.log(Message, session);
       router.push('/pending');
     }else{
       const {Message} = response.json();
@@ -80,6 +87,9 @@ const [inputMessage,setInputMessage] = useState('');
     }
   }
 
+  let symbol;
+
+  
   return (
     <div className={`${styles.AllDivSelect}`} >
 

@@ -29,15 +29,16 @@ const authenticate = (req, res, next) => {
 };
 
 // Create a new session
-router.post("/", authenticate,
-  async (req, res) => {
+router.post("/", authenticate, async (req, res) => {
+  console.log(req.body)
     try {
-      const { AdmNo, Name, therapistId } = req.body;
+      const { AdmNo, Name, therapistId,symbol } = req.body;
       const session = new addSession({
         AdmNo,
         Name,
         TherapistId: therapistId,
         Status: "initial status",
+        School: symbol,
       });
       await session.save();
       console.log(session);
@@ -109,5 +110,26 @@ router.delete("/:AdmNo", authenticate, async (req, res) => {
     res.status(500).send({ Message: "Server Error", Error: err });
   }
 });
+
+
+//Update Status 
+router.post('/update-status', async (req, res) => {
+  try {
+    const { AdmNo ,Status} = req.body; 
+
+    // Find the document by AdmNo and update the Status field
+    const updatedSession = await addSession.findOneAndUpdate(
+      { AdmNo },
+      { Status},
+      { new: true }
+    );
+
+    res.json({ message: 'Status updated successfully', session: updatedSession });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'An error occurred while updating the status' });
+  }
+});
+
 
 module.exports = router;
