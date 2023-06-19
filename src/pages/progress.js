@@ -101,7 +101,7 @@ let id;
       <Stepper activeStep={stage} alternativeLabel>
         {steps.map((step) => (
           <Step key={step.key}>
-           <Link href={{ pathname: `${step.path}`, query: router.query }}>
+           <Link href={{ pathname: `${step.path}`, query: {id:router.query?.id} }}>
               <StepLabel
                 // StepIconComponent={step.icon}
                 StepIconProps={{ style: { color: '#50C878' } }}
@@ -119,7 +119,7 @@ let id;
       <Stepper activeStep={stage} orientation="vertical" className='mx-auto'>
         {steps.map((step, index) => (
           <Step key={step.id}>
-            <Link href={{ pathname: `${step.path}`, query: router.query }}>
+            <Link href={{ pathname: `${step.path}`, query: router.query?.id }}>
             <StepLabel StepIconProps={{ style: { color: '#50C878' } }}>
               {step.label}
             </StepLabel>

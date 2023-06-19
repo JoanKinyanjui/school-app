@@ -11,6 +11,7 @@ import CircularProgress, {
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import { useRouter } from "next/router";
 
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
@@ -29,7 +30,64 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 
 
 function Sessions() {
- 
+  const router = useRouter();
+  const {id} = router.query;
+  console.log(id);
+
+ //Fetch appointments of this admno ....
+ const [appointments, setAppointments] = useState([]); 
+
+ useEffect(() => {
+  const fetchAppointments = async () => {
+    try {
+      const admno = id; // Replace with the actual admno
+      const response = await fetch(`http://localhost:5000/TherapySession/${admno}`);
+      const appointmentsData = await response.json();
+      setAppointments(appointmentsData);
+      console.log(appointmentsData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchAppointments();
+}, []);
+
+
+// percentage
+let percentage;
+if(appointments){
+percentage = 100/appointments.total;
+console.log(percentage);
+}
+
+// convert Date
+function convertDate(dateString) {
+  const date = new Date(dateString);
+  const convertedDate = date.toLocaleString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+  });
+
+  return convertedDate;
+}
+
+//  Get day
+const today = new Date();
+// Get the day of the week
+const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const dayOfWeek = daysOfWeek[today.getDay()];
+
+// Get the date, month, and year
+const date = today.getDate();
+const monthsOfYear = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const month = monthsOfYear[today.getMonth()];
+const year = today.getFullYear();
 
   return (
     <div>
@@ -46,13 +104,13 @@ function Sessions() {
         <div className={`${styles.FirstDivMobileTop} items-center grid `}>
           <div className="grid px-4">
             <p>Hello ,</p>
-            <p className="py-2 text-2xl font-semibold">ADJH 73646</p>
+            <p className="py-2 text-2xl font-semibold">ADJH {id}</p>
           </div>
 
           <div className="flex place-content-center items-center justify-between">
 <div className="grid text-left px-4">
-  <p className="font-semibold text-lg">Today's Tuesday</p>
-  <p className="text-neutral-600">Dec 12, 2023</p>
+  <p className="font-semibold text-lg"> {` Today's ${dayOfWeek}`}</p>
+  <p className="text-neutral-600">{` ${month} ${date}, ${year}`}</p>
 </div>
 
 <div className="px-4">
@@ -68,15 +126,16 @@ function Sessions() {
 
         </div>
         <div className={`${styles.AllSessionsMobileDiv} grid items-center`}>
-         <div className={`${styles.SingleSessionMobileDiv} grid`}>
+        {appointments.map((item)=>(
+         <div className={`${styles.SingleSessionMobileDiv} grid`}> 
         <div className=" flex items-center justify-between px-4 my-4">
-        <div>
+        {/* <div>
         <p className="font-medium"> Dr Buthia</p>
-        </div>
+        </div> */}
         <div className="flex items-center">
-         <p className="text-sm text-neutral-500 px-2">2days ago</p>
-         <div className={`${styles.doneCircleMobile} flex  items-center text-white place-content-center font-bold`}>
-            <p><DoneIcon /></p>
+         <p className="text-sm text-neutral-800 px-2"> {convertDate(item.appointments[0].date)} </p>
+         <div className={`${styles.doneCircleMobile} flex  items-center text-white place-content-center text-[10px]`}>
+            <p> {item.appointments[0].status} </p>
          </div>
         </div>
         </div>
@@ -84,41 +143,8 @@ function Sessions() {
           <p className="text-white"> 1</p>
         </div>
          </div>
-
-         <div className={`${styles.SingleSessionMobileDiv} grid`}>
-        <div className=" flex items-center justify-between px-4 my-4">
-        <div>
-        <p className="font-medium"> Dr Buthia</p>
-        </div>
-        <div className="flex items-center">
-         <p className="text-sm text-neutral-500 px-2">2days ago</p>
-         <div className={`${styles.doneCircleMobile} flex  items-center text-white place-content-center font-bold`}>
-            <p><DoneIcon /></p>
-         </div>
-        </div>
-        </div>
-        <div className={`${styles.AnotherBigBadgeNumberMobile} flex place-content-center items-center`}>
-          <p className="text-white"> 2</p>
-        </div>
-         </div>
-
-         <div className={`${styles.SingleSessionMobileDiv} grid`}> 
-        <div className=" flex items-center justify-between px-4 my-4">
-        <div>
-        <p className="font-medium"> Dr Buthia</p>
-        </div>
-        <div className="flex items-center">
-         <p className="text-sm text-neutral-500 px-2">2days, 12hrs</p>
-         <div className={`${styles.doneCircleMobile} flex  items-center text-white place-content-center font-bold`}>
-            <p><BsThreeDots /></p>
-         </div>
-        </div>
-        </div>
-        <div className={`${styles.AnotherBigBadgeNumberMobile} flex place-content-center items-center`}>
-          <p className="text-white"> 3</p>
-        </div>
-         </div>
          
+         ))}
         </div>
       </div>
 
@@ -139,13 +165,13 @@ function Sessions() {
         <div className={`${styles.FirstDivMobileTop} items-center grid `}>
           <div className="grid px-4 md:w-3/4 lg:w-1/2 md:mx-auto">
             <p>Hello ,</p>
-            <p className="py-2 text-2xl font-semibold">ADJH 73646</p>
+            <p className="py-2 text-2xl font-semibold">ADJH {id}</p>
           </div>
 
           <div className="flex place-content-center items-center justify-between  md:w-3/4 lg:w-1/2 md:mx-auto">
 <div className="grid text-left px-4">
-  <p className="font-semibold text-lg">Today's Tuesday</p>
-  <p className="text-neutral-600">Dec 12, 2023</p>
+  <p className="font-semibold text-lg">{` Today's ${dayOfWeek}`}</p>
+  <p className="text-neutral-600">{` ${month} ${date} ,${year}`}</p>
 </div>
 
 <div className="px-4">
@@ -161,56 +187,24 @@ function Sessions() {
 
         </div>
         <div className={`${styles.AllSessionsMobileDiv} grid items-center my-4`}>
-         <div className={`${styles.SingleSessionDesktopDiv} grid`}>
-        <div className=" flex items-center justify-between px-4 my-4">
-        <div>
-        <p className="font-medium"> Dr Buthia</p>
-        </div>
-        <div className="flex items-center">
-         <p className="text-sm text-neutral-500 px-2">2days ago</p>
-         <div className={`${styles.doneCircleMobile} flex  items-center text-white place-content-center font-bold`}>
-            <p><DoneIcon /></p>
-         </div>
-        </div>
-        </div>
-        <div className={`${styles.AnotherBigBadgeNumberMobile} flex place-content-center items-center`}>
-          <p className="text-white"> 1</p>
-        </div>
-         </div>
-
-         <div className={`${styles.SingleSessionDesktopDiv} grid`}>
-        <div className=" flex items-center justify-between px-4 my-4">
-        <div>
-        <p className="font-medium"> Dr Buthia</p>
-        </div>
-        <div className="flex items-center">
-         <p className="text-sm text-neutral-500 px-2">2days ago</p>
-         <div className={`${styles.doneCircleMobile} flex  items-center text-white place-content-center font-bold`}>
-            <p><DoneIcon /></p>
-         </div>
-        </div>
-        </div>
-        <div className={`${styles.AnotherBigBadgeNumberMobile} flex place-content-center items-center`}>
-          <p className="text-white"> 2</p>
-        </div>
-         </div>
-
-         <div className={`${styles.SingleSessionDesktopDiv} grid`}>
-        <div className=" flex items-center justify-between px-4 my-4">
-        <div>
-        <p className="font-medium"> Dr Buthia</p>
-        </div>
-        <div className="flex items-center">
-         <p className="text-sm text-neutral-500 px-2">2days, 12hrs</p>
-         <div className={`${styles.doneCircleMobile} flex  items-center text-white place-content-center font-bold`}>
-            <p><BsThreeDots /></p>
-         </div>
-        </div>
-        </div>
-        <div className={`${styles.AnotherBigBadgeNumberMobile} flex place-content-center items-center`}>
-          <p className="text-white"> 3</p>
-        </div>
-         </div>
+        {appointments.map((item)=>(
+           <div className={`${styles.SingleSessionDesktopDiv} grid`}>
+           <div className=" flex items-center justify-between px-4 my-4">
+           <div>
+           <p className="font-medium"> Dr Buthia</p>
+           </div>
+           <div className="flex items-center">
+            <p className="text-sm text-neutral-800 px-2">{convertDate(item.appointments[0].date)} </p>
+            <div className={`${styles.doneCircleMobile} flex  items-center text-white place-content-center text-[10px]`}>
+               <p>{item.appointments[0].status}</p>
+            </div>
+           </div>
+           </div>
+           <div className={`${styles.AnotherBigBadgeNumberMobile} flex place-content-center items-center`}>
+             <p className="text-white"> 1</p>
+           </div>
+            </div>
+        ))}
          
         </div>
       </div>

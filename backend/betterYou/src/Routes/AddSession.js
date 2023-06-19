@@ -3,6 +3,7 @@ const { SECRETWORD } = process.env;
 const express = require("express");
 const router = express.Router();
 const addSession = require("../../Models/TherapySession/AddSession");
+const appointmentSchema = require("../../Models/TherapySession/Appointments");
 const jwt = require("jsonwebtoken");
 
 // Authentication middleware
@@ -132,4 +133,41 @@ router.post('/update-status', async (req, res) => {
 });
 
 
+// Create a new appointment
+router.post('/newAppointment', async (req, res) => {
+  const date = req.body.date;
+  const admno = req.body.admno
+  console.log(date,)
+try{
+  const newAppointment = new appointmentSchema({
+    admno: admno,
+    appointments: [
+      { date: date, status: "scheduled" },
+    ],
+  });
+  
+ await newAppointment.save()
+ res.status(201).json({ newAppointment, Message: "successfully created an appointment" });
+}catch (error) {
+  console.error(error);
+  res.status(500).json({ message: 'An error occurred while updating the status' });
+}
+});
+
+
+//get appointments for one admno  
+router.get('/:admno', async (req, res) => {
+  try {
+    const { admno } = req.params;
+    const appointments = await appointmentSchema.find({ admno });
+    console.log(appointments)
+    res.json(appointments);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server Error' });
+  }
+});
+
 module.exports = router;
+
+

@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import CalendarComponent from '@/components/calendarComponent';
 
 const style = {
     position: 'absolute',
@@ -18,16 +19,48 @@ const style = {
 
 function Calendar() {
     const router = useRouter();
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => {
-        setOpen(false)
-        router.push('/sessions')
-    };
-    const justClose=()=>{
-        setOpen(false)
-    }
+    const { id } = router.query;
+  
+    console.log(id)
+//Booking Dates
+const [selectedDateTime, setSelectedDateTime] = useState(null);
 
+
+const handleSubmit = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/TherapySession/newAppointment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ admno:id , date:selectedDateTime }),
+      });
+
+      if (response.status === 201) {
+        const {newAppointment} = await response.json();
+        console.log("Appointment created successfully.", newAppointment);
+        router.push({
+          pathname: '/sessions',
+          query: {id},
+        });
+      } else {
+        console.error("Failed to create appointment:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error creating appointment:", error);
+    }
+  };
+
+
+const [open, setOpen] = useState(false);
+const handleOpen = () => setOpen(true);
+const handleClose = () => {
+    setOpen(false)
+   handleSubmit();
+};
+const justClose=()=>{
+    setOpen(false)
+}
     
   return (
 <>
@@ -78,6 +111,7 @@ function Calendar() {
     </div>
     <div className='py-6'>
     <p className='py-2 text-xl pl-2'>Calendar</p>
+    <CalendarComponent selectedDateTime={selectedDateTime} setSelectedDateTime={setSelectedDateTime} />
     </div>
     </div>
     <div className='w-screen flex place-content-center py-4'>
@@ -90,7 +124,7 @@ function Calendar() {
       >
          <Box sx={style}>
       <div className={`${styles.SummaryModalMobile}`}>
-      <SummaryOfAppointments  onClose={handleClose} justClose={justClose} />
+      <SummaryOfAppointments  onClose={handleClose} justClose={justClose} selectedDateTime={selectedDateTime} />
       </div>
       </Box>
       </Modal>
@@ -146,6 +180,7 @@ function Calendar() {
     </div>
     <div className='py-6  grid  w-3/4 mx-auto'>
     <p className='py-2 text-xl pl-2'>Calendar</p>
+    <CalendarComponent  selectedDateTime={selectedDateTime}  setSelectedDateTime={setSelectedDateTime}/>
     </div>
     </div>
     <div className='w-screen flex place-content-center py-4'>
@@ -158,7 +193,7 @@ function Calendar() {
       >
          <Box sx={style}>
       <div className={`${styles.SummaryModalDesktop}`}>
-      <SummaryOfAppointments  onClose={handleClose} justClose={justClose} />
+      <SummaryOfAppointments  onClose={handleClose} justClose={justClose} selectedDateTime={selectedDateTime} />
       </div>
       </Box>
       </Modal>
